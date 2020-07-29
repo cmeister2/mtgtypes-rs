@@ -1,0 +1,9 @@
+[package]
+name = "mtgtypes"
+version = "0.0.1"
+authors = ["Max Dymond <cmeister2@gmail.com>"]
+edition = "2018"
+description = "A Rust types library for Magic: the Gathering"
+license = "MIT"
+
+[dependencies]
