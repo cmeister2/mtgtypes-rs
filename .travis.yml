@@ -1,0 +1,28 @@
+os: linux
+dist: xenial
+
+language: rust
+rust:
+  - stable
+  - beta
+  - nightly
+
+jobs:
+  include:
+    # Extra deploy jobs.
+    - stage: Deploy
+      rust: stable
+      script: "echo Deploying to Cargo"
+      deploy:
+        provider: cargo
+        token:
+          # Cargo token
+          secure: iKdtajCPv+uKCciy6XnnqVX07oD0vqPTG8dquj7t7jLth2uqzOt7+pc06l+TVC63dXVVpK3lvZ6kQL40p7+YWsR7breNUBDnQv2nL48h0yPUGUD/DJ4Xvhdu5oYzGJX5hCavJHyDZvLCZEQGAX0nppJhLKI+4GpDtntKSWF8XH9TlGgkz7JnWqLA0K22QZB+nEgh6fh9J3DaWPCzYauS+roBnFSZTBJZMZtDLxocydtCqY3+GTxp+Wg897TpHGazItM4FTrHt98VfYK9QkySiBVbH/RrXvF0CQ28xlmdJC84qiSuj7R5ZvEv9xEqFDkP3oDCiELqkcDzWjHClxUwfMVOKKO9j6pMeX4uLSYvyMCWGqibF9CSSjX6Wimq6heqqco9OMNNt4t61eP+FjhTjS2cdjBC8NXFEu94xQjdtzsrs4vYZG0LFdgzrgz4T5HszxXMrLRY4/l50ZbRj+PyLtXVyue0nS/A3fYmhQpm55jPC17FCqdZasd0vMigqCiGPmsOI+akCa0e6rF/iNzXkvcOIpS3dnVP3765ZTaOZwqyJqNP5epyIOCSXsa1Bg6rurvxBNJYij38RPGFdPM6QgdZk/cf+ih6XdHd4/eAt+ReNch8l+DUb73Pm7al4b/urxPS74Og6oCFf81h9B0ESs+NBazxO9TmRaiHo35Ol8s=
+        on:
+          tags: true
+  allow_failures:
+    - rust: nightly
+  fast_finish: true
+
+# Cache cargo dependencies
+cache: cargo
